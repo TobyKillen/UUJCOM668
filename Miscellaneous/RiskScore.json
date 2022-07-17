@@ -1,0 +1,13 @@
+[
+    {
+        "risk_score_name": "risk_score",
+        "score_top_level_domain": 40,
+        "score_close_match": 20, 
+        "score_look_alike": 15,
+        "score_email_activity": 15,
+        "score_domain_state": 5,
+        "score_mx_record": 5,
+        "score_spf_record": 0,
+        "risk_score_margin": 30
+    }
+]

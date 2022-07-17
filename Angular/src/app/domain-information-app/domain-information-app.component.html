@@ -1,0 +1,122 @@
+<div class="container" *ngFor="let domain of domain_data">
+  <br>
+  <div class="container">
+  <button class="btn btn-primary" [routerLink]="['/domain']">Go Back</button>
+    
+  </div>
+  <br>
+
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-6">Domain Information </h1>
+      <p class="">All Information about <b class="text-uppercase">{{ domain['Domain'] }}</b></p>
+  
+    </div>
+  </div>
+
+    <div class="container">    
+
+        <div class="row">
+          <div class="col-sm">
+
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Detection Metadata</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">General Metadata</h6>
+                  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain URL: </a> {{ domain['Domain']}}</p>
+
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Registered Date: </a> {{ domain['Registered Date']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Detected Date: </a> {{ domain['Detected Date']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Seed:</a> {{ domain['Seeds']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Channels: </a> {{ domain['Channels']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Classification: </a> {{ domain['Classifications']}}</p>
+
+                  <hr>
+
+                  <h5 class="card-title">Tag Data</h5>
+
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Oldest Tag Added On: </a> {{ domain['Oldest Tag added on']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Latest Tag Added On: </a> {{ domain['Latest Tag added on']}}</p>
+
+
+
+                  
+                </div>
+              </div>
+                
+            
+          </div>
+          <div class="col-sm">
+
+
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Web Presence</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Technical Metadata</h6>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain State: </a> {{ domain['State']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">IP Address: </a> {{ domain['IP Address']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Final Redirected IP: </a> {{ domain['Final Redirected IP']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Is Watched?: </a> {{ domain['Is Watched']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Web Title: </a> {{ domain['Web Title']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">HTTP Status Code: </a> {{ domain['HTTP Status Code']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Expires On: </a> {{ domain['Expires on']}}</p>
+
+                </div>
+              </div>
+
+
+
+          </div>
+  
+        </div>
+      </div>    
+
+
+      <br>
+
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">DNS Information</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">General DNS Information</h6>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain SPF Record: </a> {{ domain['SPF Record']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain MX Record: </a> {{ domain['MX Record']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain MX Record Data: </a> {{ domain['MX Record Data']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Risk Score: </a> {{ domain['Risk Score']}}</p>
+
+                </div>
+              </div>
+                
+            
+          </div>
+          <div class="col-sm">
+
+
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Domain WHOIS Record</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">WHOIS Lookup Information</h6>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Registrant: </a> {{ domain['Registrant']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Registrant Email: </a> {{ domain['Registrant Email']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Domain Registrar: </a> {{ domain['Registrar']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Country: </a> {{ domain['Country']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">Admin Email: </a> {{ domain['Admin Email']}}</p>
+                  <p> <a class="font-weight-bold" style="pointer-events: none; color: black; text-decoration: none  ;">ASN: </a> {{ domain['ASN']}}</p>
+
+                </div>
+              </div>
+
+
+
+          </div>
+  
+        </div>
+      </div>  
+</div>

@@ -1,0 +1,134 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <br>
+    <h1 class="display-5 text-uppercase">Domain Data | Import Domain Data</h1>
+    <h6>User end-point for exporting and importing domain data</h6>
+
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">Domain Data | Import Source Data</h5>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Domain Discover Data</h6> -->
+
+
+
+          <form enctype="multipart/form-data" [formGroup]=domainForm>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Select CSV File from Domain Discover:</label>
+          <input type="file" class="form-control" id="domain_csv_file" formControlName="domain_csv_file" (change)="SelectedFile($event)">
+          <small class="form-text text-muted">Import Domain Information from Domain Discover. (CSV File Type)</small>
+        </div>
+    
+        <div class="btn-group">
+          <button class="btn btn-success" type="button" (click)="uploadCSV()">Upload CSV</button>
+          <button class="btn btn-danger" (click)="DeleteAllDomain()">Remove Domain Data</button>
+          <button class="btn btn-primary disabled">Export to CSV (Coming Soon)</button>
+  
+        </div>
+      </form>
+
+        </div>
+
+
+      <br>
+      <br>
+      </div>
+
+
+
+
+
+
+   
+    </div>
+    <div class="col-sm">
+
+
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">Customer Risk Score Configuration</h5>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+          <p class="card-text">Select a Customer from the drop-down above and apply their risk score to the domain data.</p>
+
+
+          <form [formGroup]="customer_configuration_dropdown_form">
+          <select class="form-control" id="customer_dropdown_selector" formControlName="customer_dropdown_selector" (change)=CustomerConfigSelector($event)>
+            <label for="customer_dropdown_selector">Select Customer Configuration</label>
+            <option value="1">--Select Customer Configuration--</option>
+            <option [value]="config" *ngFor="let config of customer_configuration | async"> {{ config }} </option>
+          </select>
+        </form>
+
+          
+        <br>
+    
+        <div class="btn-group">
+          <button class="btn btn-primary" (click)="RiskScore()">Apply Risk Score</button>
+        </div>
+
+
+        </div>
+      </div>
+  
+
+
+ 
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="container">
+  <hr>
+  <h2 class="text-sentence">All Domain Detections | Domain Data</h2>
+
+  <table class="table table-bordered table-hover" id="DomainData">
+    <thead>
+      <tr>
+        <th scope="col">Domain Name</th>
+        <!-- <th scope="col">Registered Date</th>
+        <th scope="col">Classifications</th>
+        <th scope="col">State</th> -->
+        <!-- <th scope="col">HTTP Status Code</th> -->
+        <!-- <th scope="col">Tags</th> -->
+        <th scope="col">Risk Score</th>
+        <!-- <th scope="col">Actions</th> -->
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let domain of domain_information | async ">
+
+        <td style="width: fit-content;"><a href="https://proofpointisolation.com/browser?url={{ domain['Domain'] }}" target="_blank">{{ domain["Domain"] }}</a></td>
+        <!-- <td style="width: fit-content;">{{ domain["Registered Date"] }}</td>
+        <td style="width: fit-content;">{{ domain["Classifications"] }}</td>
+        <td style="width: fit-content;">{{ domain["State"] }}</td> -->
+        <!-- <td style="width: fit-content">{{ domain["HTTP Status Code"] }}</td> -->
+        <!-- <td style="width: fit-content;">{{ domain["Tags"] }}</td> -->
+
+        <td style="width: 5%;">{{ domain["Risk Score"] }}</td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm" [routerLink]="['/domain', domain.Domain ]" style="margin-right: 5px;">More Details</button> 
+          <button type="button" (click)="DeleteDomain(domain['Domain'])" class="btn btn-danger btn-sm">Delete Domain</button> 
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+

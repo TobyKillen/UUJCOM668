@@ -1,0 +1,103 @@
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <br>
+            <h1 class="display-6">Create | Edit Configuration</h1>
+            <hr>
+
+        </div>
+    </div>
+
+</div>
+    
+
+
+
+
+
+<div class="container">
+    <button class="btn btn-primary" [routerLink]="['/configuration']">Back to Configuration List</button>
+    <br>
+    <br>
+
+
+
+    <form [formGroup]=configuration_form>
+
+
+        <div class="form-group">
+            <label for="">Customer Name:</label>
+            <input type="text" class="form-control" id="customer_name" min="0" formControlName="customer_name">
+            <small id="emailHelp" class="form-text text-muted">Customer Name (Unique)</small>
+        </div>
+
+        <div class="form-group">
+            <label for="">Risk Score: TLD Attack</label>
+            <input type="number" class="form-control" id="score_tld" min="0" formControlName="score_tld">
+            <small id="emailHelp" class="form-text text-muted">Risk Score for Top Level Domains</small>
+        </div>
+
+        <div class="form-group">
+            <label for="">Risk Score: Close Match</label>
+            <input type="number" class="form-control" id="score_close_match" min="0" formControlName="score_close_match">
+            <small id="emailHelp" class="form-text text-muted">Risk Score for Close Match Domains</small>
+        </div>
+
+        <div class="form-group">
+            <label for="">Risk Score: Look Alike Domain</label>
+            <input type="number" class="form-control" id="score_look_alike" min="0" formControlName="score_look_alike">
+            <small id="emailHelp" class="form-text text-muted">Risk Score for Look Alike Domains</small>
+        </div>
+
+
+        <div class="form-group">
+            <label for="">Risk Score: Email Activity</label>
+            <input type="number" class="form-control" id="score_email" min="0" formControlName="score_email">
+            <small id="emailHelp" class="form-text text-muted">Risk Score for Email Activity</small>
+        </div>
+
+
+        <div class="form-group">
+            <label for="">Risk Score: Domain State (Live or Down)</label>
+            <input type="number" class="form-control" id="score_state" min="0" formControlName="score_state">
+            <small id="emailHelp" class="form-text text-muted">Risk Score for Domain State</small>
+        </div>
+
+
+        <div class="form-group">
+            <label for="">Risk Score: MX Record</label>
+            <input type="number" class="form-control" id="score_mx" min="0" formControlName="score_mx">
+            <small id="emailHelp" class="form-text text-muted">Risk Score for MX Records</small>
+        </div>
+
+        <div class="form-group">
+            <label for="">Risk Score: SPF Record</label>
+            <input type="number" class="form-control" id="score_spf" min="0" formControlName="score_spf">
+            <small id="emailHelp" class="form-text text-muted">Risk Score for SPF Records</small>
+        </div>
+
+        <div class="form-group">
+            <label for="">Dashboard Margin Percentage (Max Value: 100)</label>
+            <input type="number" class="form-control" id="dashboard_percentage" min="0" max="100" formControlName="dashboard_percentage">
+            <small id="emailHelp" class="form-text text-muted">This value represents the value of "Risk Score" in which
+                a Domain is considered "High Risk"</small>
+        </div>
+
+        <br>
+        <button type="reset" class="btn btn-primary">Reset Configuration Values</button>
+
+        
+        <button type="submit" class="btn btn-warning" (click)="updateConfiguration()" style="margin-left: 10px;" [style.display]="ConfigurationChangeEdit ? '' : 'none'">Update Configuration</button>
+        <button type="submit" class="btn btn-success" (click)="Configuration()" style="margin-left: 10px;" [style.display]="ConfigurationChangeCreate ? '' : 'none'">Create New Configuration</button>
+
+    </form>
+
+
+
+
+</div>
+
+
+
+

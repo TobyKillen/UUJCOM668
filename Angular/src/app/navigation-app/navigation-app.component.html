@@ -1,0 +1,59 @@
+<ng-container *ngIf="AuthService.isAuthenticated$ | async; else UserNotAuthenticated ">
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#" style="margin-left: 15px;"><img  src="assets/pp_white.svg" alt=""></a>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMar kup">
+        <div class="navbar-nav">
+  
+          <a class="nav-item nav-link active" [routerLink]="['dashboard']">Dashboard</a>
+          <!-- <a class="nav-item nav-link active" >Takedown</a> -->
+          <a class="nav-item nav-link active" [routerLink]="['domain']">Domain Data</a>
+          <a class="nav-item nav-link active" [routerLink]="['configuration']">Configuration</a>
+          <!-- <a class="nav-item nav-link active" [routerLink]="['settings']">Options</a> -->
+  
+  
+          <a>
+  
+            <!-- <select class="form-control" formControlName="customer_name">
+              <option>Select Customer</option>
+              <option>Verizon</option>
+         </select> -->
+          </a>
+        </div>
+      </div>
+  
+      <div *ngIf = "AuthService.user$ | async as user">
+      <span class="navbar-text" style="margin-right: 15px;">
+        {{ user.name }} | <a (click) = "AuthService.logout()" style="cursor: pointer;">Log out</a>
+      </span>
+      <div style="margin-right: right;">
+  
+    </div>
+    </div>
+  </nav>
+  
+  </ng-container>
+  
+  
+  
+  <ng-template #UserNotAuthenticated>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#" style="margin-left: 15px;" ><img src="assets/pp_white.svg" alt=""></a>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMar kup">
+        <div class="navbar-nav">
+  
+          <!-- <a class="nav-item nav-link active" [routerLink]="['login']">Login</a> -->
+      
+        </div>
+      </div>
+  </nav>
+  </ng-template>
+  

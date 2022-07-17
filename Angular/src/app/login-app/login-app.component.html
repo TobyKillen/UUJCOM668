@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="container-fluid" style="color: black;"> 
+
+
+
+
+
+    <ng-container *ngIf="AuthService.isAuthenticated$ | async; else UserNotAuthenticated ">
+        <hr>
+        <h1 class="display-6 text-uppercase">login successful</h1>
+        <hr>
+    </ng-container>
+
+
+    <ng-template #UserNotAuthenticated>
+        <br>
+        <br>
+        <hr>
+        <h1 class="display-1 text-uppercase text-center">Domain Threat Analysis</h1>
+        <h2 class="text-center text-uppercase" style="color: black;">Analyst Dashbaord | Digital Risk & Compliance </h2>
+        <div class="btn btn-group" id="button_group">
+            <button type="button" class="btn btn-primary" (click) = "AuthService.loginWithRedirect()"> Sign In Via OAuth  </button>
+            <button type="button" class="btn btn-secondary" (click) = "AuthService.loginWithRedirect()" ng-disabled="true"> Sign In Via SSO | OneLogin</button>
+
+        </div>
+        <hr>
+
+        <div class="container" style="height: 500px;"> </div>
+
+    </ng-template>
+
+
+
+</div>
+    
+</div>
+<!-- <button class="btn btn-primary" (click)="AuthService.loginWithRedirect({ appState : { target : this.router.url } })">Login</button> -->

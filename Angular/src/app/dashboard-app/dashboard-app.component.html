@@ -1,0 +1,371 @@
+<div class="container-fluid">
+
+
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid">
+            <br>
+            <h1 class="display-6">Dashboard</h1>
+            <p class="">Time-Series Graphs Representing Key Domain Attributes & Characteristics</p>
+    
+        </div>
+    </div>
+    
+
+
+
+
+    <div class="row">
+
+        <div class="col-sm">
+
+            <div class="card" style="width: 25vw;">
+                <div class="card-body">
+                    <h5 class="card-title">Dashboard Date Time Filter</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Filter the Time-Series Graphs using the date ranges below.
+                    </h6>
+
+                    <form [formGroup]="graph_range_fiter_form">
+
+                        <label id="" for="datetime">Start Date (End Date or Earlier):</label>
+
+                        <div class="col-sm">
+                            <input type="date" formControlName="start_date_range">
+                        </div>
+
+                        <label id="" for="datetime">End Date (Today or Earlier):</label>
+
+                        <div class="col-sm">
+                            <input type="date" formControlName="end_date_range">
+                        </div>
+
+                        <br>
+                        <button id="lastthreemonths" class="btn btn-primary" style="margin-right: 5px;"
+                            (click)='LastThreeMonths()'>Last 3 Months</button> <button id="datetime"
+                            class="btn btn-primary" (click)='UpdateGraphs()'>Update Graphs</button>
+                    </form>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-sm">
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ng-container *ngIf="domainDataMinor"> 
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+            <br>
+            <div class="card" style="height: 11rem;">
+                <br>
+                <h1 class="text-center"> {{ domainDataMinor.total_domain }}</h1>
+
+                <div class="card-body">
+                    <p class="card-text text-center">Domain(s) Detection's</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <br>
+            <div class="card" style="height: 11rem;">
+
+                <br>
+                <h1 class="text-center"> {{ domainDataMinor.live_domain }}</h1>
+
+                <div class="card-body">
+                    <p class="card-text text-center">Live Domain(s)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <br>
+            <div class="card" style="height: 11rem;">
+
+                <br>
+                <h1 class="text-center"> {{ domainDataMinor.dta_domain }}</h1>
+                <div class="card-body">
+                    <p class="card-text text-center">DTA - High Risk Domain(s)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <br>
+            <div class="card" style="height: 11rem;">
+
+                <br>
+                <h1 class="text-center"> {{ domainDataMinor['mx_record_domain'] }}</h1>
+                <div class="card-body">
+                    <p class="card-text text-center">Domain(s) with MX Records</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <br>
+            <div class="card" style="height: 11rem;">
+
+                <br>
+                <h1 class="text-center"> {{ domainDataMinor['spf_record_domain'] }}</h1>
+                <div class="card-body">
+                    <p class="card-text text-center">Domain(s) with SPF Records</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <br>
+            <div class="card" style="height: 11rem;">
+
+                <br>
+                <h1 class="text-center"> {{ domainDataMinor['registered_ytd'] }}</h1>
+                <div class="card-body">
+                    <p class="card-text text-center">Domain's Registered this Year</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</ng-container>
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="MonthlyRegistrationsData" [labels]="MonthlyRegistrationsLabels"
+                [options]="GeneralBarChartOptions" [legend]="MonthlyRegistrationsLegend">
+            </canvas>
+        </div>
+        <div class="col-sm">
+            <!-- 2nd Graph Goes in here. -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="DomainBarChartData" [labels]="DomainBarChartLabels"
+                [options]="GeneralBarChartOptions" [legend]="DomainBarChartLegend">
+            </canvas>
+        </div>
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="MXDomainBarChartData" [labels]="MXDomainBarChartLabels"
+                [options]="GeneralBarChartOptions" [legend]="MXDomainBarChartLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="DownDomainBarChartData" [labels]="DownDomainBarChartLabels"
+                [options]="GeneralBarChartOptions" [legend]="DownDomainBarChartLegend">
+            </canvas>
+        </div>
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="LiveDomainBarChartData" [labels]="LiveDomainBarChartLabels"
+                [options]="GeneralBarChartOptions" [legend]="LiveDomainBarChartLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="DTADomainBarChartData" [labels]="DTADomainBarChartLabels"
+                [options]="GeneralBarChartOptions" [legend]="DTADomainBarChartLegend">
+            </canvas>
+        </div>
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="VTDBarChartDataSuccessful" [labels]="VTDBarChartLabelsSuccessful"
+                [options]="GeneralBarChartOptions" [legend]="VTDBarChartLegendSuccessful">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="VTDBarChartDataUnsuccessful" [labels]="VTDBarChartLabelsUnsuccessful"
+            [options]="GeneralBarChartOptions" [legend]="VTDBarChartLegendUnsuccessful">
+        </canvas>
+
+        </div>
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="VTDBarChartDataPending" [labels]="VTDBarChartLabelsPending"
+                [options]="GeneralBarChartOptions" [legend]="VTDBarChartLegendPending">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="TakedownData" [labels]="TakedownLabels"
+                [legend]="TakedownLegend">
+            </canvas>
+        </div>
+        <div class="col-sm">
+            <canvas baseChart id="DomainGraph" [datasets]="DomainStateData" [labels]="DomainStateChartLabels"
+                [legend]="DomainStateLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container" style="margin-top: 30px">
+    <hr>
+    <div class="card">
+        <div class="card-body"> 
+    <p class="display-6">Domain Threat Analysis | High Risk Domain's</p>
+    <h3>The following domains are which DTA recommends you action upon.</h3>
+    <div class="row">
+        <div class="col-sm">
+
+            <table class="table" id="DTATable">
+                <thead>
+                  <tr>
+                    <th scope="col">Domain Name</th>
+                    <th scope="col">Domain State</th>
+                    <th scope="col">Domain Registered Date</th>
+                    <th scope="col">Domain Tags</th>
+                    <th scope="col">Domain Risk Score</th>
+                    <th scope="col">Domain Classifications</th>
+
+
+
+
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let domain of domain_threat_analysis | async">
+                    <th>{{ domain['Domain'] }}</th>
+                    <th>{{ domain['State'] }}</th>
+                    <th>{{ domain['Registered Date'] }}</th>
+                    <th>{{ domain['Tags'] }}</th>
+                    <th>{{ domain['Risk Score'] }}</th>
+
+                    <th>{{ domain['Classifications'] }}</th>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+
+
+
+        </div>
+    </div>
+
+        </div>
+    </div>
+</div>
+
